@@ -14,13 +14,13 @@
 #define LR_SW 32       //양옆 스위치
 #define LED 8
 
-int interval = 5000;
+int interval = 10000;
 unsigned long TimeUD;
 unsigned long TimeLR;
 
 void setup()  // 초기 한번 실행
 {
-   Serial.begin(9600);
+  
   pinMode(UPPER_RED, OUTPUT);
   pinMode(UPPER_YELLOW, OUTPUT);
   pinMode(UPPER_GREEN, OUTPUT);
@@ -37,18 +37,18 @@ void setup()  // 초기 한번 실행
   pinMode(LR_SW, INPUT_PULLUP);
   pinMode(LED, OUTPUT);
   initLeftRight();
-  TimeLR = 5000;
+  /*TimeLR = 5000;*/
 }
 
 void loop() //반복
 {
   if(digitalRead(LR_SW) == LOW && digitalRead(UPPER_GREEN) == HIGH){
-    delay(1000);
+    delay(3000);
     Blink_UD_LED();
     initLeftRight();
   }
   else if(digitalRead(UD_SW) == LOW && digitalRead(LEFT_GREEN) == HIGH){
-    delay(1000);
+    delay(3000);
     Blink_LR_LED();
     initUpDown();
   }
@@ -56,12 +56,10 @@ void loop() //반복
     unsigned long currentTime = millis();
     
     if(currentTime > TimeUD + interval && currentTime > TimeLR + interval*2){
-      delay(1000);
       Blink_UD_LED();
       initLeftRight(); 
     }
     else if(currentTime > TimeLR + interval && currentTime > TimeUD + interval*2){
-      delay(1000);
       Blink_LR_LED();
       initUpDown();
     }
@@ -97,6 +95,7 @@ void initUpDown(){
   digitalWrite(UPPER_RED, LOW);  digitalWrite(LOWER_RED, LOW);
   digitalWrite(RIGHT_GREEN, LOW);  digitalWrite(LEFT_GREEN, LOW);
   TimeUD = millis();
+  TimeLR = millis();
   }
   
  void initLeftRight(){
@@ -108,16 +107,6 @@ void initUpDown(){
   digitalWrite(LEFT_RED, LOW);  digitalWrite(RIGHT_RED, LOW);
   digitalWrite(UPPER_GREEN, LOW);  digitalWrite(LOWER_GREEN, LOW);
   TimeLR = millis();
+  TimeUD = millis();
+  }
  }
-
-/* void changeUD2LR(){
-  delay(1000);
-  Blink_UD_LED();
-  initLeftRight();
- }
-
-void changeLR2UD(){
-  delay(1000);
-  Blink_LR_LED();
-  initUpDown();
-}*/
