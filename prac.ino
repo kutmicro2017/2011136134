@@ -34,7 +34,7 @@ void setup()  // 초기 한번 실행
   pinMode(UD_SW, INPUT_PULLUP);
   pinMode(LR_SW, INPUT_PULLUP);
   initLeftRight();
-  TimeLR = interval;
+  TimeUD = -interval;
 }
 
 void loop() //반복
