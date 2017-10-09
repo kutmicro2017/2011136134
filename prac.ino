@@ -12,7 +12,6 @@
 #define LEFT_GREEN 27  //왼쪽 불
 #define UD_SW 30       //위아래 스위치
 #define LR_SW 32       //양옆 스위치
-#define LED 8
 
 int interval = 10000;
 unsigned long TimeUD;
@@ -20,7 +19,6 @@ unsigned long TimeLR;
 
 void setup()  // 초기 한번 실행
 {
-  
   pinMode(UPPER_RED, OUTPUT);
   pinMode(UPPER_YELLOW, OUTPUT);
   pinMode(UPPER_GREEN, OUTPUT);
@@ -35,9 +33,8 @@ void setup()  // 초기 한번 실행
   pinMode(LEFT_GREEN, OUTPUT);
   pinMode(UD_SW, INPUT_PULLUP);
   pinMode(LR_SW, INPUT_PULLUP);
-  pinMode(LED, OUTPUT);
   initLeftRight();
-  /*TimeLR = 5000;*/
+  TimeLR = interval;
 }
 
 void loop() //반복
@@ -95,7 +92,6 @@ void initUpDown(){
   digitalWrite(UPPER_RED, LOW);  digitalWrite(LOWER_RED, LOW);
   digitalWrite(RIGHT_GREEN, LOW);  digitalWrite(LEFT_GREEN, LOW);
   TimeUD = millis();
-  TimeLR = millis();
   }
   
  void initLeftRight(){
@@ -107,6 +103,4 @@ void initUpDown(){
   digitalWrite(LEFT_RED, LOW);  digitalWrite(RIGHT_RED, LOW);
   digitalWrite(UPPER_GREEN, LOW);  digitalWrite(LOWER_GREEN, LOW);
   TimeLR = millis();
-  TimeUD = millis();
-  }
  }
