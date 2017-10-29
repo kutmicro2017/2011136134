@@ -282,18 +282,7 @@ void loop()
   digitalWrite(Down_Red, HIGH);delay(100);digitalWrite(Down_Red, LOW); 
   digitalWrite(Down_Yellow, HIGH);delay(100);digitalWrite(Down_Yellow, LOW);
   digitalWrite(Down_Green, HIGH);delay(100);digitalWrite(Down_Green, LOW);
-/*
-  digitalWrite(Right_Green, HIGH);  digitalWrite(Left_Green, HIGH);
-  digitalWrite(Up_Red, HIGH);  digitalWrite(Down_Red, HIGH);
-
-  digitalWrite(Up_Yellow, LOW);   digitalWrite(Down_Yellow, LOW);
-  digitalWrite(Left_Yellow, LOW);   digitalWrite(Right_Yellow, LOW);
-  digitalWrite(Left_Red, LOW);  digitalWrite(Right_Red, LOW);
-  digitalWrite(Up_Green, LOW);  digitalWrite(Down_Green, LOW);
-  
-  TimeUD = - DRIVABLE_DURATION;
-  TimeLR = millis();
-*/ }
+ }
 
 void checkDotmatrix(){
 for(int thisRow=7; thisRow>=0; thisRow--)
@@ -328,25 +317,7 @@ void LR_BlinkYellow() //양옆 노란불 점멸과 동시에 보행가능신호
   DisplayWalkSign(delayTime);
 }
 
-/*void LR_LED()//3초의 대기시간동안보행가능신호 5초의 시간동안 LR_BlinkYellow() 그후에 상태를 정지신호와 true설정//사용되지않고있음!!!
-{
-  for (int t = (LED_DELAY_TIME + LED_Yellow_BLINK_DURATION) / 1000; t > 0; --t) (대기시간3초+점멸시간5초)총 8초간진행
-  {
-    if (t > BLINK_TIME) //처음엔 8>5, 7>5, 6>5    이 3번(3초)의 시간동안 대기(3)
-      //1초간 보행 신호 출력 현재 총 3초 
-      DisplayWalkSign(1000); //  1초씩 보행가능신호 출력
-    else
-    {
-      digitalWrite(Left_Green, LOW);
-      digitalWrite(Right_Green, LOW);
-      LR_BlinkYellow();//보행자 신호를 출력과 동시에 노란불 점멸해주는 함수 5초간진행(5)
-    }
-  }
-  digitalWrite(Left_Red, HIGH);
-  digitalWrite(Right_Red, HIGH);
-  DisplayStopSign(WALK_DURATION);
-  state = true;
-}*/
+
 
 void UD_BlinkYellow(int former, int later) //위아래 노란불 점멸과 동시에 정지신호+시간출력
 {
@@ -360,7 +331,7 @@ void UD_BlinkYellow(int former, int later) //위아래 노란불 점멸과 동�
   DisplayStopSign(delayTime, former, later);
 }
 
-void UD_LED() //3초의 대기시간동안 정지신호+숫자, 5초의 시간동안 UD_BlinkYellow() 그후에 상태를 (위아래정지 양옆파란불)★false설정해야하는것을 true설정을 해놓았다.
+void UD_LED() //3초의 대기시간동안 정지신호+숫자, 5초의 시간동안 UD_BlinkYellow() 그후에 상태를 (위아래정지 양옆파란불)
 {
   for (int t = (LED_DELAY_TIME + LED_Yellow_BLINK_DURATION) / 1000; t > 0; --t)// t는 현재 8인데 if문3번돌고 else문 5번돈뒤 상태를(위아래 정지, 양옆 주행) 
   {
