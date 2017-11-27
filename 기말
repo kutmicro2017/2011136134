@@ -12,7 +12,7 @@ CapacitiveSensor   cs_28_30 = CapacitiveSensor(28,30); // 1M resistor between pi
 void setup()                    
 {
    cs_28_30.set_CS_AutocaL_Millis(0xFFFFFFFF);// turn off autocalibrate on channel 1 - just as an example
-   Serial.begin(9600);
+   Serial.begin(300);
    pinMode(PIN_RED,OUTPUT);
    pinMode(PIN_BLUE,OUTPUT);
    pinMode(PIN_GREEN,OUTPUT);
@@ -25,7 +25,7 @@ void loop()
  long sensor1 =  cs_28_30.capacitiveSensor(18);
 
     Serial.println(sensor1);  // print sensor output 
-   if(sensor1 >= 5000)  touch = true;
+   if(sensor1 >= 10)  touch = true;
    else touch = false;
 
    if(touch == true) state = !state;
